@@ -1,0 +1,7 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=4702
+
+A light-weight alternative to vim-latexsuite's folding. It uses a simple foldexpr to capture \sections, \subsections and blocks defined with \begin and \end. However, you are not limited to the foldexpr method and can still define manual markers, e.g.
+
+%{{{ Packages
+\usepackage{hyperref}
+%}}}
