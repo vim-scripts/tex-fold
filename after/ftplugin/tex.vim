@@ -14,7 +14,7 @@ let b:did_ftplugin = 1
 "{{{ Globals
 
 if !exists('g:tex_fold_sec_char')
-    let g:tex_fold_sec_char = '➿'
+    let g:tex_fold_sec_char = '➜'
 endif
 
 if !exists('g:tex_fold_env_char')
@@ -45,27 +45,23 @@ endif
 function! TeXFold(lnum)
     let line = getline(a:lnum)
 
-    if line =~ '^\s*\\chapter'
+    if line =~ '^\s*\\section'
         return '>1'
     endif
 
-    if line =~ '^\s*\\section'
+    if line =~ '^\s*\\subsection'
         return '>2'
     endif
 
-    if line =~ '^\s*\\subsection'
+    if line =~ '^\s*\\subsubsection'
         return '>3'
     endif
 
-    if line =~ '^\s*\\subsubsection'
-        return '>4'
-    endif
-
-    if line =~ '^\s*\\begin{'
+    if line =~ '^\s*\\begin{frame'
         return 'a1'
     endif
 
-    if line =~ '^\s*\\end{'
+    if line =~ '^\s*\\end{frame'
         return 's1'
     endif
 
