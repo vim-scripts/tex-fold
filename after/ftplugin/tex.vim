@@ -4,12 +4,6 @@
 " Author: Matthias Vogelgesang <github.com/matze>
 "
 " =============================================================================
-"
-if exists("b:did_ftplugin")
-  finish
-endif
-
-let b:did_ftplugin = 1
 
 "{{{ Globals
 
@@ -57,11 +51,11 @@ function! TeXFold(lnum)
         return '>3'
     endif
 
-    if line =~ '^\s*\\begin{frame'
+    if line =~ '^\s*\\begin{\(frame\|tabular\|figure\|align\)'
         return 'a1'
     endif
 
-    if line =~ '^\s*\\end{frame'
+    if line =~ '^\s*\\end{\(frame\|tabular\|figure\|align\)'
         return 's1'
     endif
 
