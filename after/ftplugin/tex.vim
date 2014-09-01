@@ -23,6 +23,10 @@ if !exists('g:tex_fold_allow_marker')
     let g:tex_fold_allow_marker = 1
 endif
 
+if !exists('g:tex_fold_additional_envs')
+    let g:tex_fold_additional_envs = []
+endif
+
 "}}}
 "{{{ Fold options
 
@@ -38,6 +42,7 @@ endif
 
 function! TeXFold(lnum)
     let line = getline(a:lnum)
+    let envs = '\(' . join(['frame', 'table', 'figure', 'align', 'lstlisting'] + g:tex_fold_additional_envs, '\|') . '\)'
 
     if line =~ '^\s*\\section'
         return '>1'
@@ -51,11 +56,11 @@ function! TeXFold(lnum)
         return '>3'
     endif
 
-    if line =~ '^\s*\\begin{\(frame\|tabular\|figure\|align\)'
+    if line =~ '^\s*\\begin{' . envs
         return 'a1'
     endif
 
-    if line =~ '^\s*\\end{\(frame\|tabular\|figure\|align\)'
+    if line =~ '^\s*\\end{' . envs
         return 's1'
     endif
 
